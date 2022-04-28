@@ -178,6 +178,7 @@ fn make_stream_node() -> StreamNode {
         node: Some(Node::GlobalSimpleAggNode(SimpleAggNode {
             agg_calls: vec![make_sum_aggcall(0), make_sum_aggcall(1)],
             distribution_keys: Default::default(),
+            table_ids: vec![],
         })),
         input: vec![filter_node],
         fields: vec![], // TODO: fill this later
@@ -208,6 +209,7 @@ fn make_stream_node() -> StreamNode {
         node: Some(Node::GlobalSimpleAggNode(SimpleAggNode {
             agg_calls: vec![make_sum_aggcall(0), make_sum_aggcall(1)],
             distribution_keys: Default::default(),
+            table_ids: vec![],
         })),
         fields: vec![], // TODO: fill this later
         input: vec![exchange_node_1],

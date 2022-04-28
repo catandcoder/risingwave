@@ -282,7 +282,7 @@ impl<S: StateStore> SimpleAggExecutor<S> {
     pub fn new_from_v1(
         input: BoxedExecutor,
         agg_calls: Vec<AggCall>,
-        keyspace: Keyspace<S>,
+        keyspace: Vec<Keyspace<S>>,
         pk_indices: PkIndices,
         executor_id: u64,
         _op_info: String,

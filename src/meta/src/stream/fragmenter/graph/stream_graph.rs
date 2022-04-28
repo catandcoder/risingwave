@@ -462,6 +462,18 @@ impl StreamGraphBuilder {
                         *table_id += table_id_offset;
                     }
                 }
+
+                match new_stream_node.node.as_mut().unwrap() {
+                    Node::GlobalSimpleAggNode(node) | Node::LocalSimpleAggNode(node) => {
+                        assert_eq!(node.table_ids.len(), node.agg_calls.len());
+                        // In-place update the table id. Convert from local to global.
+                        for table_id in &mut node.table_ids {
+                            *table_id += table_id_offset;
+                        }
+                    }
+                    _ => {}
+                }
+
                 for (idx, input) in stream_node.input.iter().enumerate() {
                     match input.get_node()? {
                         Node::ExchangeNode(_) => {
