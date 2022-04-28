@@ -51,6 +51,11 @@ impl Properties {
     pub fn get_kinesis(&self, key: &str) -> Result<String> {
         self.get_inner(key, " when using Kinesis source")
     }
+
+    /// It's an alternative of `get` but returns nexmark-specifc error hints.
+    pub fn get_nexmark(&self, key: &str) -> Result<String> {
+        self.get_inner(key, " when using Nexmark source")
+    }
 }
 
 /// [`AnyhowProperties`] returns [`anyhow::Result`] if key is not found.
@@ -88,6 +93,11 @@ impl AnyhowProperties {
     /// It's an alternative of `get` but returns kafka-specifc error hints.
     pub fn get_kafka(&self, key: &str) -> anyhow::Result<String> {
         self.get_inner(key, " when using Kafka source")
+    }
+
+    /// It's an alternative of `get` but returns nexmark-specifc error hints.
+    pub fn get_nexmark(&self, key: &str) -> anyhow::Result<String> {
+        self.get_inner(key, " when using Nexmark source")
     }
 }
 
